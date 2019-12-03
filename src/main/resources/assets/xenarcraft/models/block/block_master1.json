@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "xenarcraft:block/blockmaster1"
+    "all": "xenarcraft:block/block_master1"
   }
 }

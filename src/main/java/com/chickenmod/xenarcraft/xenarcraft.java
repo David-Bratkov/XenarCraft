@@ -2,6 +2,8 @@ package com.chickenmod.xenarcraft;
 
 import com.chickenmod.xenarcraft.blocks.FirstBlock;
 import com.chickenmod.xenarcraft.blocks.ModBlocks;
+import com.chickenmod.xenarcraft.items.FirstItem;
+import com.chickenmod.xenarcraft.setup.ModSetup;
 import com.chickenmod.xenarcraft.setup.ServerProxy;
 import com.chickenmod.xenarcraft.setup.ClientProxy;
 import com.chickenmod.xenarcraft.setup.IProxy;
@@ -27,12 +29,16 @@ public class xenarcraft {
 
     public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
 
+    public static ModSetup setup = new ModSetup();
+
     public xenarcraft() {
         // Register the com.example.examplemod.setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        setup.init();
+        proxy.init();
     }
 
 
@@ -54,8 +60,11 @@ public class xenarcraft {
         }
 
         @SubscribeEvent
-        public static void onItemRegistry(final RegistryEvent.Register<Item> event) {//This registers the block as an item
-            event.getRegistry().register(new BlockItem(ModBlocks.block_master1, new Item.Properties()).setRegistryName("block_master1"));
+        public static void onItemRegistry(final RegistryEvent.Register<Item> event) {
+            Item.Properties properties = new Item.Properties() //This registers the item properties and itemgroup
+                .group(setup.itemGroup);
+            event.getRegistry().register(new BlockItem(ModBlocks.block_master1, properties).setRegistryName("block_master1"));//This registers the block as in item
+            event.getRegistry().register(new FirstItem());
         }
     }
 }

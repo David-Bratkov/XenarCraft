@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "xenarcraft:block/block_master1"
+    "particle": "xenarcraft:block/block_master1",
+    "down": "xenarcraft:block/block_master1",
+    "up": "xenarcraft:block/block_master1",
+    "east": "xenarcraft:block/block_master1",
+    "west": "xenarcraft:block/block_master1",
+    "north": "xenarcraft:block/block_master1_front",
+    "south": "xenarcraft:block/block_master1"
   }
 }

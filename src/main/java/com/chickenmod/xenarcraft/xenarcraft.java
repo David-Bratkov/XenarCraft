@@ -1,6 +1,7 @@
 package com.chickenmod.xenarcraft;
 
 import com.chickenmod.xenarcraft.blocks.FirstBlock;
+import com.chickenmod.xenarcraft.blocks.FirstBlockTile;
 import com.chickenmod.xenarcraft.blocks.ModBlocks;
 import com.chickenmod.xenarcraft.items.FirstItem;
 import com.chickenmod.xenarcraft.setup.ModSetup;
@@ -10,6 +11,7 @@ import com.chickenmod.xenarcraft.setup.IProxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -65,6 +67,12 @@ public class xenarcraft {
                 .group(setup.itemGroup);
             event.getRegistry().register(new BlockItem(ModBlocks.block_master1, properties).setRegistryName("block_master1"));//This registers the block as in item
             event.getRegistry().register(new FirstItem());
+
+        }
+
+        @SubscribeEvent
+        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
+            event.getRegistry().register(TileEntityType.Builder.create(FirstBlockTile::new, ModBlocks.block_master1).build(null).setRegistryName("block_master1"));
         }
     }
 }

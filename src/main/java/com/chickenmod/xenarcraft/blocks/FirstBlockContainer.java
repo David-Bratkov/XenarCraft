@@ -28,9 +28,9 @@ public class FirstBlockContainer extends Container {
         this.playerInventory = new InvWrapper(playerInventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 64, 24));
+            addSlot(new SlotItemHandler(h, 0, 78, 24));
         });
-        layoutPlayerInventorySlots(10,70);
+        layoutPlayerInventorySlots(8,84);
     }
 
     @Override

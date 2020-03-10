@@ -75,8 +75,9 @@ public class xenarcraft {
                 .group(setup.itemGroup);
             event.getRegistry().register(new BlockItem(ModBlocks.block_master1, properties).setRegistryName("block_master1"));//This registers the block as in item
             event.getRegistry().register(new FirstItem());
-
         }
+
+        // https://www.youtube.com/watch?v=GsV_pKkE1mo
 
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){ //This registers the block as a tile entity

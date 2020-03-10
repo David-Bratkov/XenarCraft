@@ -83,6 +83,7 @@ public class xenarcraft {
             event.getRegistry().register(TileEntityType.Builder.create(FirstBlockTile::new, ModBlocks.block_master1).build(null).setRegistryName("block_master1"));
         }
 
+        @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event){
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();

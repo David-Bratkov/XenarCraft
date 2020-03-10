@@ -1,6 +1,7 @@
 package com.chickenmod.xenarcraft;
 
 import com.chickenmod.xenarcraft.blocks.FirstBlock;
+import com.chickenmod.xenarcraft.blocks.FirstBlockContainer;
 import com.chickenmod.xenarcraft.blocks.FirstBlockTile;
 import com.chickenmod.xenarcraft.blocks.ModBlocks;
 import com.chickenmod.xenarcraft.items.FirstItem;
@@ -9,9 +10,13 @@ import com.chickenmod.xenarcraft.setup.ServerProxy;
 import com.chickenmod.xenarcraft.setup.ClientProxy;
 import com.chickenmod.xenarcraft.setup.IProxy;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.model.BlockPart;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -26,6 +31,9 @@ import org.apache.logging.log4j.Logger;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("xenarcraft")
 public class xenarcraft {
+
+    public static final String MODID = "xenarcraft";
+
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -71,8 +79,15 @@ public class xenarcraft {
         }
 
         @SubscribeEvent
-        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
+        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){ //This registers the block as a tile entity
             event.getRegistry().register(TileEntityType.Builder.create(FirstBlockTile::new, ModBlocks.block_master1).build(null).setRegistryName("block_master1"));
+        }
+
+        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event){
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new FirstBlockContainer(windowId, xenarcraft.proxy.getClientWorld(), pos, inv, xenarcraft.proxy.getClientPlayer());
+            }).setRegistryName("block_master1"));
         }
     }
 }

@@ -18,3 +18,4 @@ Future Goals for the mod
 -Finish the generator
 -Modify the pickaxe to be a really cool and strong pickaxe and not some fancy stick
 -add any random things that my friends suggest when I learn how to add things without a guide
+-add a new block that acts like a battery and charges items from different mods
